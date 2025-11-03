@@ -1,0 +1,104 @@
+(This single file contains ALL of your styles, perfectly organized with comments)```css
+/* ======================================================================= /
+/ 1. HEADER STYLES /
+/ (Sticky behavior, modern icons) /
+/ ======================================================================= */
+#header-wrapper {
+position: sticky !important;
+top: 0 !important;
+z-index: 1000 !important;
+background-color: #ffffff !important;
+}
+.header-wrapper.fixed-header .app-header {
+animation: none !important;
+}
+#app-header .header-switcher > .yc-icon,
+#app-header .cart-switcher > .cart-icon {
+display: none !important;
+}
+#app-header .header-switcher,
+#app-header .cart-switcher {
+position: relative;
+width: 28px;
+height: 28px;
+font-size: 0;
+}
+#app-header .header-switcher::before,
+#app-header .cart-switcher::before {
+content: '' !important;
+display: block !important;
+width: 24px;
+height: 24px;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+}
+#app-header .header-left .header-switcher::before {
+background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="%23000000" d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg>') !important;
+}
+#app-header .header-right .header-switcher::before {
+background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>') !important;
+}
+#app-header .cart-switcher::before {
+background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="%23000000" d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z"/></svg>') !important;
+}
+/* ======================================================================= /
+/ 2. BUNDLE OFFER STYLES /
+/ ======================================================================= */
+.bundle-heading { display: flex !important; align-items: center; width: 100%; margin-top: 10px; margin-bottom: 15px; font-size: 18px !important; }
+.bundle-heading::before, .bundle-heading::after { content: ''; flex-grow: 1; height: 2px; background-color: var(--primary-color); }
+[dir="rtl"] .bundle-heading::before { margin-left: 15px; }
+[dir="rtl"] .bundle-heading::after { margin-right: 15px; }
+[dir="ltr"] .bundle-heading::before { margin-right: 15px; }
+[dir="ltr"] .bundle-heading::after { margin-left: 15px; }
+.textual-buttons-container { display: inline-grid !important; flex-direction: column; gap: 15px; width: 100%; }
+[dir] .textual-button label { border: 2px solid #e0e0e0; border-radius: 8px; background-color: var(--dark-primary-color); padding: 10px; height: auto; width: 100%; display: flex; justify-content: space-between !important; align-items: center; transition: all 0.1s ease; box-sizing: border-box; }
+.single-product .textual-button [type=radio]:checked + label { background-color: var(--light-primary-color) !important; border-color: var(--primary-color) !important; box-shadow: 0 0 0 2px var(--primary-color); color: #000000; }
+.best-offer, .best-value { position: relative; border-color: #ed2851 !important; }
+.best-offer::before { content: 'أفضل عرض'; position: absolute; top: -13px; right: 16px; background-color: #ed2851; color: white; padding: 1px 10px; font-size: 14px; font-weight: bold; border-radius: 4px; transform: skew(-4deg, 3deg); }
+.best-value::before { content: 'أفضل قيمة'; position: absolute; top: -13px; right: 16px; background-color: #ed2851; color: white; padding: 1px 10px; font-size: 14px; font-weight: bold; border-radius: 4px; transform: skew(-4deg, 3deg); }
+.offer-price-container { display: flex; flex-direction: column; align-items: flex-end; text-align: right; padding-left: 10px; flex-shrink: 0; }
+.offer-price-container .current-price, .offer-price-container .before-price { display: flex; justify-content: flex-end; align-items: baseline; white-space: nowrap; }
+.offer-price-container .current-price { font-size: 15px; font-weight: bold; color: #000000; }
+.offer-price-container .before-price { font-size: 14px; color: #757575; text-decoration: line-through; opacity: 0.9; }
+/* ======================================================================= /
+/ 3. CHECKOUT & FORM STYLES /
+/ ======================================================================= */
+.checkout-form { position: relative; margin-top: 50px; }
+.checkout-form::before { content: ''; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); width: 100%; height: 2px; background-color: var(--primary-color); }
+.checkout-form .checkout-heading { font-weight: 600 !important; text-align: center; margin-bottom: 20px; }
+.checkout-form .checkout-groups { width: 75% !important; margin: 0 auto !important; display: block !important; }
+.checkout-form .form-group { width: 100% !important; flex-basis: 100% !important; padding: 0 !important; margin-bottom: 15px; }
+.checkout-form .form-group:last-child { margin-bottom: 0 !important; }
+.checkout-form input[type="text"], .checkout-form input[type="tel"], .checkout-form input[type="email"], .checkout-form input[type="number"], .checkout-form textarea { border: 1px solid #565656 !important; background-color: #ededed !important; color: #000000 !important; font-size: 16px !important; }
+.checkout-form input::placeholder, .checkout-form textarea::placeholder { color: #747474 !important; }
+.checkout-form input:focus, .checkout-form textarea:focus { outline: none; border-color: #333333 !important; }
+.checkout-form .form-group input { padding-right: 45px !important; background-repeat: no-repeat; background-position: right 15px center; background-size: 20px; }
+.checkout-form .form-group input[name*="name"] { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23888888"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>'); }
+.checkout-form .form-group input[name*="phone"] { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23888888"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></svg>'); }
+.checkout-form .form-group input[name*="address"], .checkout-form .form-group input[name*="city"] { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23888888"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>'); }
+[dir="rtl"] .checkout-form input[name="phone"] { text-align: right !important; }
+[dir="ltr"] .checkout-form input[name="phone"] { text-align: left !important; }
+.add-to-cart-section { width: 75% !important; margin: 10px auto 0 auto !important; padding: 0 !important; }
+.add-to-cart-section .single-submit { width: 100% !important; border-radius: 5px !important; }
+#trust-badges-container { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 20px; padding: 10px; border-radius: 8px; width: 75%; margin-left: auto; margin-right: auto; flex-wrap: wrap; }
+#trust-badges-container img { height: 28px !important; width: auto; max-width: 50px; object-fit: contain; }
+.product-section.description-section { border-top: none !important; }
+/* ======================================================================= /
+/ 4. GLOBAL & RESPONSIVE STYLES /
+/ ======================================================================= */
+.product-item .product-thumbnail img { border-radius: 10px !important; }
+@media (max-width: 768px) {
+.slider-container .slide img.desktop-image, .slider-container .slide img.hidden-desktop { display: none !important; }
+.slider-container .slide img.mobile-image { display: block !important; width: 100%; height: 100%; object-fit: cover; }
+.slider-container.horizontal { height: 500px !important; min-height: auto !important; max-height: none !important; }
+.slider-container .slide { height: 100% !important; }
+}
+@media (min-width: 769px) {
+.slider-container .slide img.mobile-image { display: none !important; }
+.slider-container .slide img.desktop-image { display: block !important; }
+}
