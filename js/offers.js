@@ -1,31 +1,28 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Add "bundle-heading" class to the offer section title
+function initOfferCustomizations() {
+    // Add "bundle-heading" class
     const optionContainers = document.querySelectorAll('.single-variants');
     optionContainers.forEach(container => {
         if (container.querySelector('.textual-buttons-container')) {
             const heading = container.querySelector('.option-name');
-            if (heading) {
-                heading.classList.add('bundle-heading');
-            }
+            if (heading) heading.classList.add('bundle-heading');
         }
     });
 
-    // Add Badges and Prices to Offers (Your working "slow clicker" script)
-    setTimeout(function() {
+    // Add Badges and Prices (Your working "slow clicker" script)
+    setTimeout(() => {
         const offerLabels = document.querySelectorAll('.textual-button label');
-        if (offerLabels.length > 1) { offerLabels[1].classList.add('best-offer'); }
-        if (offerLabels.length > 2) { offerLabels[2].classList.add('best-value'); }
+        if (offerLabels.length > 1) offerLabels[1].classList.add('best-offer');
+        if (offerLabels.length > 2) offerLabels[2].classList.add('best-value');
 
         const currency = document.querySelector('.single-product .single-price .currency')?.textContent || 'ريال سعودي';
         const variantInputs = document.querySelectorAll('.single-variant [type=radio]');
         let originallySelected = document.querySelector('.single-variant [type=radio]:checked') || (variantInputs.length > 0 ? variantInputs[0] : null);
-        let variantPrices = [];
-        let currentIndex = 0;
+        let variantPrices = [], currentIndex = 0;
 
         function getPriceForVariant(input, index) {
             input.checked = true;
             input.dispatchEvent(new Event('change', { bubbles: true }));
-            setTimeout(function() {
+            setTimeout(() => {
                 const currentPrice = document.querySelector('.single-product .single-price .value')?.textContent || '';
                 const beforePrice = document.querySelector('.single-product .before.currency-value .value')?.textContent || '';
                 variantPrices[index] = { current: currentPrice, before: beforePrice };
@@ -34,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     getPriceForVariant(variantInputs[currentIndex], currentIndex);
                 } else {
                     addPricesToLabels();
-                    setTimeout(function() {
+                    setTimeout(() => {
                         if (originallySelected) {
                             originallySelected.checked = true;
                             originallySelected.dispatchEvent(new Event('change', { bubbles: true }));
@@ -45,27 +42,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function addPricesToLabels() {
-            variantInputs.forEach(function(input, index) {
+            variantInputs.forEach((input, index) => {
                 const label = document.querySelector(`label[for="${input.id}"]`);
-                if (label && !label.querySelector('.offer-price-container') && variantPrices[index]) {
+                if (label && !label.querySelector('.offer-price-container') && variantPrices[index] && variantPrices[index].current) {
                     const priceContainer = document.createElement('div');
                     priceContainer.className = 'offer-price-container';
-                    const currentPriceEl = document.createElement('span');
-                    currentPriceEl.className = 'current-price';
-                    currentPriceEl.innerHTML = `${variantPrices[index].current} ${currency}`;
-                    priceContainer.appendChild(currentPriceEl);
-                    if (variantPrices[index].before) {
-                        const beforePriceEl = document.createElement('span');
-                        beforePriceEl.className = 'before-price';
-                        beforePriceEl.innerHTML = `${variantPrices[index].before} ${currency}`;
-                        priceContainer.appendChild(beforePriceEl);
-                    }
+                    let priceHTML = `<span class="current-price">${variantPrices[index].current} ${currency}</span>`;
+                    if (variantPrices[index].before) priceHTML += `<span class="before-price">${variantPrices[index].before} ${currency}</span>`;
+                    priceContainer.innerHTML = priceHTML;
                     label.appendChild(priceContainer);
                 }
             });
         }
-        if (variantInputs.length > 0) {
-            getPriceForVariant(variantInputs[0], 0);
-        }
+        if (variantInputs.length > 0) getPriceForVariant(variantInputs[0], 0);
     }, 1000);
-});
+}
