@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
+function initBadgeCustomizations() {
+    setTimeout(() => {
         const addToCartSection = document.querySelector('.add-to-cart-section');
         if (addToCartSection && !document.getElementById('trust-badges-container')) {
             const badgeImages = [
@@ -18,4 +18,4 @@ document.addEventListener('DOMContentLoaded', function() {
             addToCartSection.parentNode.insertBefore(newBadgesContainer, addToCartSection.nextSibling);
         }
     }, 500);
-});
+}
