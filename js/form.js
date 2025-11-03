@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+function initFormCustomizations() {
     // Set phone input to type="tel" for number pad
     const phoneInput = document.querySelector('input[name="phone"]');
     if (phoneInput) {
@@ -19,4 +19,4 @@ document.addEventListener('DOMContentLoaded', function() {
     formInputs.forEach(input => {
         input.addEventListener('blur', resetZoom);
     });
-});
+}
